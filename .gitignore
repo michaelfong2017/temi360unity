@@ -10,7 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
+# Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
@@ -58,3 +58,22 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.dll
+
+/Assets/Plugins.meta
+/Assets/Plugins/SoraUnitySdk.meta
+/Assets/Plugins/SoraUnitySdk/android.meta
+/Assets/Plugins/SoraUnitySdk/android/arm64-v8a.meta
+/Assets/Plugins/SoraUnitySdk/android/arm64-v8a/libSoraUnitySdk.so
+/Assets/Plugins/SoraUnitySdk/android/webrtc.jar
+/Assets/Plugins/SoraUnitySdk/macos.meta
+/Assets/Plugins/SoraUnitySdk/macos/SoraUnitySdk.bundle/
+/Assets/Plugins/SoraUnitySdk/ios.meta
+/Assets/Plugins/SoraUnitySdk/ios/libSoraUnitySdk.a
+/Assets/Plugins/SoraUnitySdk/ios/libwebrtc.a
+/Assets/Plugins/SoraUnitySdk/windows.meta
+/Assets/Plugins/SoraUnitySdk/windows/x86_64.meta
+/Assets/SoraUnitySdk.meta
+/Assets/SoraUnitySdk/
+/webrtc_logs_*
+/.env.json
