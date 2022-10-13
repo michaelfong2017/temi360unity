@@ -99,7 +99,7 @@ public class SoraSample : MonoBehaviour
         if (!MultiRecv)
         {
             var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
-            image.texture = new Texture2D(640, 480, TextureFormat.RGBA32, false);
+            // image.texture = new Texture2D(640, 480, TextureFormat.RGBA32, false);
         }
         StartCoroutine(Render());
         StartCoroutine(GetStats());
@@ -203,7 +203,7 @@ public class SoraSample : MonoBehaviour
                 obj.transform.SetParent(scrollViewContent.transform);
                 obj.SetActive(true);
                 var image = obj.GetComponent<UnityEngine.UI.RawImage>();
-                image.texture = new Texture2D(320, 240, TextureFormat.RGBA32, false);
+                // image.texture = new Texture2D(320, 240, TextureFormat.RGBA32, false);
                 tracks.Add(trackId, obj);
             };
             sora.OnRemoveTrack = (trackId) =>
