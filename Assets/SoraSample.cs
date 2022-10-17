@@ -26,6 +26,7 @@ public class SoraSample : MonoBehaviour
     
     uint trackId = 0;
     public GameObject renderTarget;
+    RenderTexture renderTexture;
 
     
     Dictionary<uint, GameObject> tracks = new Dictionary<uint, GameObject>();
@@ -98,7 +99,8 @@ public class SoraSample : MonoBehaviour
 
         if (!MultiRecv)
         {
-            var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
+            renderTexture = (RenderTexture)renderTarget.GetComponent<UnityEngine.UI.RawImage>().texture;
+            // var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
             // image.texture = new Texture2D(640, 480, TextureFormat.RGBA32, false);
         }
         StartCoroutine(Render());
@@ -162,8 +164,9 @@ public class SoraSample : MonoBehaviour
         {
             if (trackId != 0)
             {
-                var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
-                sora.RenderTrackToTexture(trackId, image.texture);
+                // var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
+                sora.RenderTrackToTexture(trackId, (Texture)renderTexture);
+                VerticallyFlipRenderTexture(renderTexture);
             }
         }
         else
@@ -174,6 +177,13 @@ public class SoraSample : MonoBehaviour
                 sora.RenderTrackToTexture(track.Key, image.texture);
             }
         }
+    }
+    public static void VerticallyFlipRenderTexture(RenderTexture target)
+    {
+        var temp = RenderTexture.GetTemporary(target.descriptor);
+        Graphics.Blit(target, temp, new Vector2(1, -1), new Vector2(0, 1));
+        Graphics.Blit(temp, target);
+        RenderTexture.ReleaseTemporary(temp);
     }
     void InitSora()
     {
@@ -202,7 +212,7 @@ public class SoraSample : MonoBehaviour
                 obj.name = string.Format("track {0}", trackId);
                 obj.transform.SetParent(scrollViewContent.transform);
                 obj.SetActive(true);
-                var image = obj.GetComponent<UnityEngine.UI.RawImage>();
+                // var image = obj.GetComponent<UnityEngine.UI.RawImage>();
                 // image.texture = new Texture2D(320, 240, TextureFormat.RGBA32, false);
                 tracks.Add(trackId, obj);
             };
@@ -284,6 +294,9 @@ public class SoraSample : MonoBehaviour
                     GameObject.Destroy(track.Value);
                 }
                 tracks.Clear();
+            }
+            else {
+                renderTexture.Release();
             }
             if (!Recvonly)
             {
