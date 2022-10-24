@@ -26,6 +26,7 @@ public class SoraSample : MonoBehaviour
     
     uint trackId = 0;
     public GameObject renderTarget;
+    Material material;
     RenderTexture renderTexture;
 
     
@@ -99,12 +100,24 @@ public class SoraSample : MonoBehaviour
 
         if (!MultiRecv)
         {
-            renderTexture = (RenderTexture)renderTarget.GetComponent<UnityEngine.UI.RawImage>().texture;
+            material = renderTarget.GetComponent<MeshRenderer>().material;
+            renderTexture = (RenderTexture)material.mainTexture;
+            // material = Resources.Load<Material>("360Material");
+            // renderTexture = Resources.Load<RenderTexture>("360RenderTexture");
+            // RenderTexture.active = renderTexture;
             // var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
             // image.texture = new Texture2D(640, 480, TextureFormat.RGBA32, false);
         }
         StartCoroutine(Render());
         StartCoroutine(GetStats());
+
+        StartCoroutine(TestOnClickStart());
+    }
+
+    IEnumerator TestOnClickStart()
+    {
+        yield return new WaitForSeconds(5);
+        OnClickStart();
     }
 
     IEnumerator Render()
@@ -167,6 +180,8 @@ public class SoraSample : MonoBehaviour
                 // var image = renderTarget.GetComponent<UnityEngine.UI.RawImage>();
                 sora.RenderTrackToTexture(trackId, (Texture)renderTexture);
                 VerticallyFlipRenderTexture(renderTexture);
+                // material.SetTexture("_MainTex", renderTexture);
+                // renderTarget.GetComponent<MeshRenderer>().material = material;
             }
         }
         else
