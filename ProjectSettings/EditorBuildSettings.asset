@@ -15,6 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/recvonly.unity
     guid: 42dc8387e5635e740b8ddc4b98538fef
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5ceadf0a743594da099f9c3a552493b4,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b85073a30a4e143218f2e11a5c5bca15,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 78a183f35defb45a694cd2b0ca3ba3a8,

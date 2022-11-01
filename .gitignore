@@ -58,8 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-*.dll
-
 /Assets/Plugins.meta
 /Assets/Plugins/SoraUnitySdk.meta
 /Assets/Plugins/SoraUnitySdk/android.meta
